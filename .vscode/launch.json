@@ -19,6 +19,14 @@
             "mode": "auto",
             "program": "${workspaceFolder}/01_2/main.go",
             "envFile": "${workspaceFolder}/.env"
-        }        
+        },
+        {
+            "name": "01_3",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/01_3/main.go",
+            "envFile": "${workspaceFolder}/.env"
+        }     
     ]
 }
