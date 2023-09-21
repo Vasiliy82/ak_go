@@ -35,6 +35,57 @@
             "mode": "auto",
             "program": "${workspaceFolder}/01_3/main.go",
             "envFile": "${workspaceFolder}/.env"
-        }     
+        }   
+        ,
+        {
+            "name": "08_1",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/08_01/main.go",
+            "envFile": "${workspaceFolder}/.env"
+        }     ,
+        {
+            "name": "08_2",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/08_02/main.go",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "name": "08_3_1",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/08_03_1/main.go",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "name": "08_3_2",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/08_03_2/main.go",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "name": "10_1",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/10_01/main.go",
+            "envFile": "${workspaceFolder}/.env",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "10_2",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/10_02/main.go",
+            "envFile": "${workspaceFolder}/.env",
+            "console": "externalTerminal"
+        }
     ]
 }

@@ -4,8 +4,7 @@ import (
 	"database/sql"
 )
 
-type AnyString string
-
+// Типы данных для констант
 type Method string
 type Action string
 type Property string
