@@ -10,7 +10,12 @@ v2.0.0, v2.1.0. Модуль должен прочитать файл со сл�
 {"name":"Зайчик","age":2,"email":"zayac@mail.ru"}
 {"name":"Лисичка","age":3,"email":"alice@mail.ru"}
 */
+import (
+	format "github.com/Vasiliy82/ak_go/format"
+)
 
 func main() {
+
+	format.Do("input", "output")
 
 }
