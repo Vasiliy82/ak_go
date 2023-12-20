@@ -9,9 +9,13 @@ import (
 )
 
 type DocRecord struct {
-	Name  string `json:"number"`
-	Age   int    `json:"age"`
-	Email string `json:"email"`
+	Name  string `json:"number" xml:"Name"`
+	Age   int    `json:"age" xml:"Age"`
+	Email string `json:"email" xml:"Email"`
+}
+
+type patients struct {
+	recs []DocRecord `xml:"Record"`
 }
 
 func Do(fnInput, fnOutput string) error {
@@ -86,9 +90,11 @@ func Do(fnInput, fnOutput string) error {
 	// v2.0.0 пока убрал сортировку
 	// sort.Slice(records, func(i, j int) bool { return records[i].Age < records[j].Age })
 
+	p := patients{recs: records}
+
 	enc := xml.NewEncoder(fout)
 	enc.Indent("", "    ")
-	if err := enc.Encode(records); err != nil {
+	if err := enc.Encode(p); err != nil {
 		return fmt.Errorf("Ошибка записи в файл: %w", err)
 	}
 

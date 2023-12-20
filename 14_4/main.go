@@ -11,7 +11,7 @@ v2.0.0, v2.1.0. Модуль должен прочитать файл со сл�
 {"name":"Лисичка","age":3,"email":"alice@mail.ru"}
 */
 import (
-	"github.com/Vasiliy82/ak_go/format"
+	format "github.com/Vasiliy82/ak_go/format/v2"
 )
 
 func main() {
