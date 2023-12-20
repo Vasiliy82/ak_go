@@ -7,12 +7,45 @@ import (
 	"strings"
 )
 
-var inputHistory map[string][]int
-var data map[string]string
+// функция каждый раз будет возвращать накопленное в счетчике значение, а также новую версию функции, которая будет "помнить" это накопленное значение
+type SelfReturningFunc func(int) (int, SelfReturningFunc)
+
+var counters map[string]SelfReturningFunc
+
+func newCounter(ctrIncrementor int) SelfReturningFunc {
+	return func(value int) (int, SelfReturningFunc) {
+		// это даже не рекурсия, ведь функция сама себя не вызывает, она каждый раз делает новую версию себя, если можно так выразиться
+		return value + ctrIncrementor, newCounter(value + ctrIncrementor)
+	}
+}
+
+func process(ctrName string, ctrIncrementor int) int {
+	// если счетчик встретился впервые, надо инициализировать его нулевым значением
+	if _, found := counters[ctrName]; !found {
+		counters[ctrName] = newCounter(0)
+	}
+	// получаем накопленный результат и новую версию функции, в которую "вложены" все предыдущие функции
+	result, newF := counters[ctrName](ctrIncrementor)
+	counters[ctrName] = newF
+	return result
+}
+
+// парсить строку по символу _ можно и без strings.Split, но я полагаю, что тут задача не на это
+func parse(s string) (string, int, error) {
+	parts := strings.Split(s, "_")
+	if len(parts) != 2 {
+		return "", 0, fmt.Errorf("Некорректный формат")
+	}
+	ctrName := parts[0]
+	ctrIncrementor, err := strconv.Atoi(parts[1])
+	if err != nil {
+		return "", 0, fmt.Errorf("Значение должно быть целым числом")
+	}
+	return ctrName, ctrIncrementor, nil
+}
 
 func main() {
-	inputHistory = make(map[string][]int)
-	data = make(map[string]string)
+	counters = make(map[string]SelfReturningFunc)
 
 	fmt.Println("Счётчик готов к работе!")
 	for {
@@ -27,65 +60,6 @@ func main() {
 			fmt.Println(err)
 		} else {
 			fmt.Printf("%s: %d\n", ctrName, process(ctrName, ctrIncrementor))
-			// второй вариант исполнения будет работать только с положительными числами, и
-			// паниковать при вводе отрицательных
-			// зато он более "честный", он не хранит явно даже первое введенное значение
-			// fmt.Printf("%s: %d\n", ctrName, process2(ctrName, ctrIncrementor))
 		}
 	}
-}
-
-func sum(s []int) int {
-	if len(s) > 1 {
-		return s[0] + sum(s[1:])
-	}
-	return s[0]
-}
-
-func process(ctrName string, ctrIncrementor int) int {
-	// проверять ключ на существование не требуется, т.к. append(nil, something) отлично работает
-	inputHistory[ctrName] = append(inputHistory[ctrName], ctrIncrementor)
-	return sum(inputHistory[ctrName])
-}
-
-func process2(ctrName string, ctrIncrementor int) int {
-	// проверять ключ на существование не требуется, т.к. при его отсутствии вернется пустая строка
-	data[ctrName] = data[ctrName] + strings.Repeat("*", ctrIncrementor)
-	return len(data[ctrName])
-}
-
-func parse(s string) (string, int, error) {
-	parts := strings.Split(s, "_")
-	if len(parts) != 2 {
-		return "", 0, fmt.Errorf("Некорректный формат")
-	}
-	ctrName := parts[0]
-	ctrIncrementor, err := strconv.Atoi(parts[1])
-	if err != nil {
-		return "", 0, fmt.Errorf("Значение должно быть целым числом")
-	}
-	return ctrName, ctrIncrementor, nil
-}
-
-func parse_wo_split(s string) (string, int, error) {
-	ctrName := ""
-	for idx, v := range s {
-		// собираем имя счетчика, пока не встретится _
-		if v == '_' {
-			ctrName = s[:idx]
-			s = s[idx+1:]
-			break
-		}
-	}
-	for _, v := range s {
-		// проверяем значение на ошибку типа "некорректный формат"
-		if v == '_' {
-			return "", 0, fmt.Errorf("Некорректный формат")
-		}
-	}
-	ctrIncrementor, err := strconv.Atoi(s)
-	if err != nil {
-		return "", 0, fmt.Errorf("Значение должно быть целым числом")
-	}
-	return ctrName, ctrIncrementor, nil
 }
