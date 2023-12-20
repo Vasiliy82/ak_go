@@ -15,7 +15,7 @@ type DocRecord struct {
 }
 
 type patients struct {
-	recs []DocRecord `xml:"Record"`
+	Recs []DocRecord `xml:"Patient"`
 }
 
 func Do(fnInput, fnOutput string) error {
@@ -90,7 +90,7 @@ func Do(fnInput, fnOutput string) error {
 	// v2.0.0 пока убрал сортировку
 	// sort.Slice(records, func(i, j int) bool { return records[i].Age < records[j].Age })
 
-	p := patients{recs: records}
+	p := patients{Recs: records}
 
 	enc := xml.NewEncoder(fout)
 	enc.Indent("", "    ")
