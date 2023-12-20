@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sort"
 )
 
 type DocRecord struct {
@@ -14,8 +15,8 @@ type DocRecord struct {
 }
 
 func Do(fnInput, fnOutput string) error {
-	// Версия 1.0.0
-	// tag 1.0.0
+	// Версия 1.1.0
+	// tag 1.1.0
 	/* Модуль должен прочитать файл со следующим
 	   содержимым:
 	   {"name":"Ёжик","age":10,"email":"ezh@mail.ru"}
@@ -25,7 +26,13 @@ func Do(fnInput, fnOutput string) error {
 	   v1.0.0 должна создавать файл с содержимым:
 	   [{"name":"Ёжик","age":10,"email":"ezh@mail.ru"},
 	   {"name":"Зайчик","age":2,"email":"zayac@mail.ru"},
-	   {"name":"Лисичка","age":3,"email":"alice@mail.ru"}] */
+	   {"name":"Лисичка","age":3,"email":"alice@mail.ru"}]
+
+		v1.1.0 должна сортировать данные по полю age по возрастанию:
+		[{"name":"Зайчик","age":2,"email":"zayac@mail.ru"},
+		{"name":"Лисичка","age":3,"email":"alice@mail.ru"},
+		{"name":"Ёжик","age":10,"email":"ezh@mail.ru"}]
+	*/
 
 	// первым делом открываем входной и выходной файлы. Если возникнет ошибка на этом этапе, то и читать ничего не придется,
 	// при большом объеме данных юзер раньше получит ошибку
@@ -54,6 +61,9 @@ func Do(fnInput, fnOutput string) error {
 		records = append(records, d)
 	}
 	log.Printf("%+v", records)
+
+	// v1.1.0 добавилась сортировка
+	sort.Slice(records, func(i, j int) bool { return records[i].Age < records[j].Age })
 
 	err = json.NewEncoder(fout).Encode(records)
 
