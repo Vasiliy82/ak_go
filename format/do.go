@@ -15,6 +15,7 @@ type DocRecord struct {
 
 func Do(fnInput, fnOutput string) error {
 	// Версия 1.0.0
+	// tag 1.0.0
 	/* Модуль должен прочитать файл со следующим
 	   содержимым:
 	   {"name":"Ёжик","age":10,"email":"ezh@mail.ru"}

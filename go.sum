@@ -1,2 +1,2 @@
-gopkg.in/guregu/null.v3 v3.5.0 h1:xTcasT8ETfMcUHn0zTvIYtQud/9Mx5dJqD554SZct0o=
-gopkg.in/guregu/null.v3 v3.5.0/go.mod h1:E4tX2Qe3h7QdL+uZ3a0vqvYwKQsRSQKM5V4YltdgH9Y=
+github.com/Vasiliy82/ak_go/format v0.0.0-20231220203959-5a0785b62bcd h1:XXXrhqnKHqpJ6vg5quNGwi+SQy2BSPXPxy3d5phCxZg=
+github.com/Vasiliy82/ak_go/format v0.0.0-20231220203959-5a0785b62bcd/go.mod h1:wdzZ0f6wyDi3pLf/AqcHLZY/nHgGy29i++9vdiTD7Bk=
