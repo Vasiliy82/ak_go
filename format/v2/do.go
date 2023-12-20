@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sort"
 )
 
 type DocRecord struct {
@@ -19,8 +20,8 @@ type patients struct {
 }
 
 func Do(fnInput, fnOutput string) error {
-	// Версия 1.1.0
-	// tag 1.1.0
+	// Версия 2.1.0
+	//
 	/* Модуль должен прочитать файл со следующим
 	   содержимым:
 	   {"name":"Ёжик","age":10,"email":"ezh@mail.ru"}
@@ -56,6 +57,26 @@ func Do(fnInput, fnOutput string) error {
 		<Email>alice@mail.ru</Email>
 		</Patient>
 		</patients>
+
+		v2.1.0 должна сортировать данные по полю age по возрастанию:
+		<?xml version="1.0" encoding="UTF-8"?>
+		<patients>
+		<Patient>
+		<Name>Зайчик</Name>
+		<Age>2</Age>
+		<Email>zayac@mail.ru</Email>
+		</Patient>
+		<Patient>
+		<Name>Лисичка</Name>
+		<Age>3</Age>
+		<Email>alice@mail.ru</Email>
+		</Patient>
+		<Patient>
+		<Name>Ёжик</Name>
+		<Age>10</Age>
+		<Email>ezh@mail.ru</Email>
+		</Patient>
+		</patients>
 	*/
 
 	// первым делом открываем входной и выходной файлы. Если возникнет ошибка на этом этапе, то и читать ничего не придется,
@@ -88,7 +109,8 @@ func Do(fnInput, fnOutput string) error {
 
 	// v1.1.0 добавилась сортировка
 	// v2.0.0 пока убрал сортировку
-	// sort.Slice(records, func(i, j int) bool { return records[i].Age < records[j].Age })
+	// v2.1.0 вернул сортировку
+	sort.Slice(records, func(i, j int) bool { return records[i].Age < records[j].Age })
 
 	p := patients{Recs: records}
 
