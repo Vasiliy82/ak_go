@@ -1,0 +1,22 @@
+syntax = "proto3";
+package report;
+option go_package = "pkg/report;report";
+service Report {
+rpc user(Dates) returns (Users);
+rpc healthz(HealthzRequest) returns (HealthzResponse);
+}
+message Dates {
+string start = 1;
+string end = 2;
+}
+message User {
+string name = 1;
+float popularity = 2;
+}
+message Users {
+repeated User user = 1;
+}
+message HealthzRequest {
+}
+message HealthzResponse {
+}

@@ -1,0 +1,31 @@
+version: '3.5'
+services:
+  report:
+    build:
+      context: ./
+      dockerfile: docker/go/Dockerfile
+    volumes:
+      - ./:/go/src/course
+    working_dir: /go/src/course
+    entrypoint: make run_report
+    ports:
+      - "8081:8081"
+    env_file:
+      - .env.local
+    networks:
+      - course
+  api:
+    build:
+      context: ./
+      dockerfile: docker/go/Dockerfile
+    volumes:
+      - ./:/go/src/course
+    working_dir: /go/src/course
+    entrypoint: tail -f /dev/null
+    ports:
+      - "8080:8080"
+    networks:
+      - course
+networks:
+  course:
+    driver: bridge
