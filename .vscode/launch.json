@@ -192,6 +192,47 @@
             "mode": "auto",
             "program": "${workspaceFolder}/14_4/main.go",
             "console": "externalTerminal"
+        },
+        {
+            "name": "15_1_2_3",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/15_1_2_3/main.go",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "15_4",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/15_4/main.go",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "15_5_6",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/15_5_6/main.go",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "17_3",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/17_3/main.go",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "18_2",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/18_2/main.go",
+            "console": "externalTerminal"
         }
+
     ]
 }
